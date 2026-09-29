@@ -48,7 +48,7 @@ Sebuah framework analitik prediktif machine learning end-to-end untuk menghentik
 
 ## 🏢 Latar Belakang Bisnis & Asimetri Biaya
 
-Di era retail modern, pendekatan pemasaran massal (*blast marketing*) yang mengirimkan promosi fisik ke seluruh basis data konsumen terbukti membakar anggaran secara sia-sia. Pada dataset *iFood*, tercatat bahwa **85.09% konsumen menolak penawaran kampanye**, yang mengakibatkan pemborosan biaya cetak dan memicu kejenuhan promosi (*customer marketing fatigue*).
+Di era ritel modern, pendekatan pemasaran massal (*blast marketing*) yang mengirimkan promosi fisik ke seluruh basis data konsumen terbukti membakar anggaran secara sia-sia. Pada dataset *iFood*, tercatat bahwa **85.09% konsumen menolak penawaran kampanye**, yang mengakibatkan pemborosan biaya cetak dan memicu kejenuhan promosi (*customer marketing fatigue*).
 
 ### Struktur Biaya Finansial Kampanye:
 - **Biaya Kontak Promosi ($C$)**: **$3.00** per konsumen (biaya cetak katalog mewah & kurir).
@@ -72,7 +72,7 @@ Di era retail modern, pendekatan pemasaran massal (*blast marketing*) yang mengi
 
 ---
 
-## 🎯 Apa yang Kita Cari di Proyek Ini?
+## 🎯 Proyek ini mencari apa ya?
 
 1. **Customer Profiling & Micro-Segmentation**: Membedah siapa konsumen yang memiliki kecenderungan tertinggi untuk merespons tawaran produk premium gourmet dan anggur.
 2. **Predictive Scoring Engine**: Membangun algoritma klasifikasi probabilistik dengan kemampuan diskriminasi tinggi (ROC-AUC > 0.90) untuk memisahkan calon pembeli dari non-pembeli secara otomatis.
@@ -83,7 +83,7 @@ Di era retail modern, pendekatan pemasaran massal (*blast marketing*) yang mengi
 ## 🔍 Eksplorasi Data (EDA) & Temuan Utama
 
 ### 1. Ketidakseimbangan Kelas Ekstrem (Class Imbalance)
-Dari 2.240 konsumen, hanya **334 konsumen (14.91%)** yang menerima tawaran (*Response = 1*), sementara **1.906 konsumen (85.09%)** menolak (*Response = 0*).
+Dari 2.240 konsumen, hanya **334 konsumen (14,91%)** yang menerima tawaran (*Response = 1*), sementara **1.906 konsumen (85,09%)** menolak (*Response = 0*).
 
 <p align="center">
   <img src="figures/01_target_distribution.png" width="550" alt="Distribusi Target Respons Konsumen">
@@ -101,7 +101,7 @@ Analisis hubungan antara karakteristik demografis dengan tingkat responsivitas k
 - **Pendidikan**: Lulusan **PhD (20.8%)** dan Master (15.4%) memiliki responsivitas yang jauh melampaui lulusan Basic (4.0%).
 - **Status Pernikahan**: Konsumen berstatus **Single (21.4%)** dan **Divorced (20.7%)** memiliki respons hampir 2 kali lipat lebih tinggi dibandingkan dengan yang memiliki pasangan (Partner/Married: 11.6%).
 - **Keberadaan Anak Kecil (`Kidhome`)**: Konsumen tanpa anak kecil merespons **24.2%**, turun drastis ke **8.9%** (1 anak), dan anjlok ke **4.3%** (2 anak).
-- **Afinitas Kampanye Masa Lalu (`AcceptedCmp1`)**: Konsumen yang pernah merespons kampanye 1 memiliki tingkat konversi fantastis sebesar **54.2%** (vs 12.4% bagi yang menolak).
+- **Afinitas Kampanye Masa Lalu (`AcceptedCmp1`)**: Konsumen yang pernah merespons kampanye 1 memiliki tingkat konversi fantastis sebesar **54,2%** (vs 12,4% bagi yang menolak).
 
 ### 3. Distribusi Variabel Moneter Kontinu (KDE Plot)
 
@@ -152,9 +152,9 @@ Mengembangkan 9 fitur turunan berbasis domain ritel untuk menangkap pola perilak
 ## 🛡️ Arsitektur Pipeline & Proteksi Data Leakage
 
 Untuk memastikan keabsahan saintifik tanpa kebocoran informasi (*data leakage*):
-1. **Stratified Split (80/20)**: Memisahkan 1.788 data latih (rasio respons 14.93%) dan 448 data uji holdout (rasio respons 14.96%).
+1. **Stratified Split (80/20)**: Memisahkan 1.788 data latih (rasio respons 14,93%) dan 448 data uji holdout (rasio respons 14,96%).
 2. **Scikit-Learn ColumnTransformer**:
-   - Fitur Numerik: distandardisasi dengan `StandardScaler()`.
+   - Fitur numerik: distandardisasi dengan `StandardScaler()`.
    - Fitur Kategorikal: Di-encode dengan `OneHotEncoder(drop='first', sparse_output=False, handle_unknown='ignore')` untuk menghindari *dummy variable trap*.
 3. **Pipeline Encapsulation**: Seluruh transformasi dibungkus di dalam `Pipeline`. Saat validasi silang berjalan, scaler dan encoder hanya mempelajari data latih pada masing-masing lipatan (*fold*), menjamin **Data Leakage Rate = 0.00%**.
 
@@ -237,7 +237,7 @@ Untuk membongkar sifat "kotak hitam" dari algoritma ensemble, kami membandingkan
 1. **`Recency` (-0.0808 ROC-AUC)**: Faktor paling dominan. Semakin baru konsumen bertransaksi di toko, semakin tinggi peluang konversinya.
 2. **`Tenure_Days` (-0.0477 ROC-AUC)**: Loyalitas pelanggan lama menjadi jangkar kepercayaan terhadap penawaran baru.
 3. **`Marital_Status` (-0.0329 ROC-AUC)**: Konsumen lajang (Single/Divorced) memiliki fleksibilitas anggaran belanja pribadi yang lebih tinggi.
-4. **`Total_Accepted_Previous` (-0.0296 ROC-AUC)**: Konsumen yang terbiasa merespons kampanye sebelumnya menunjukkan loyalitas promosi berulang.
+4. **`Total_Accepted_Previous` (-0.0296 ROC-AUC)**: Konsumen yang terbiasa merespons kampanye sebelumnya menunjukkan loyalitas terhadap promosi berulang.
 5. **`Meat_Share` (-0.0147 ROC-AUC)**: Proporsi belanja daging segar/impor merefleksikan daya beli gourmet premium.
 
 ---
@@ -251,6 +251,6 @@ Untuk membongkar sifat "kotak hitam" dari algoritma ensemble, kami membandingkan
 
 ### 2. Rekomendasi untuk Chief Financial Officer (CFO)
 - **Deploy Threshold 0.09**: Terapkan ambang batas probabilitas klasifikasi pada angka **0.09** untuk menangkap asimetri keuntungan margin $45 vs biaya $3.
-- **Proyeksi Finansial Skala Penuh**: Jika diimplementasikan pada skala 10.000 konsumen aktif per kuartal, model ini diproyeksikan memberikan tambahan laba bersih sebesar **+$25.300+ per kampanye** dibandingkan dengan kampanye konvensional.
+- **Proyeksi Finansial Skala Penuh**: Jika diimplementasikan pada skala 10.000 konsumen aktif per kuartal, model ini diproyeksikan memberikan tambahan laba bersih sebesar **+$25.300 per kampanye** dibandingkan dengan kampanye konvensional.
 
 ---
