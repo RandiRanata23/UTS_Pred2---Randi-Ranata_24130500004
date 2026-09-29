@@ -43,9 +43,6 @@ Sebuah framework analitik prediktif machine learning end-to-end untuk menghentik
 9. [The Game Changer: Optimasi Ambang Batas Finansial ($3 vs $45)](#-the-game-changer-optimasi-ambang-batas-finansial-3-vs-45)
 10. [Interpretabilitas Model & Faktor Pendorong Bisnis (XAI)](#-interpretabilitas-model--faktor-pendorong-bisnis-xai)
 11. [Rekomendasi Strategis (Action Plan CMO & CFO)](#-rekomendasi-strategis-action-plan-cmo--cfo)
-12. [Struktur Repositori](#-struktur-repositori)
-13. [Panduan Menjalankan Proyek (Reproducibility Guide)](#-panduan-menjalankan-proyek-reproducibility-guide)
-14. [Kepatuhan Pengumpulan Tugas Akademik](#-kepatuhan-pengumpulan-tugas-akademik)
 
 ---
 
